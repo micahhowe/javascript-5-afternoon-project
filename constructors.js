@@ -64,9 +64,10 @@ function Car(make, model, year){
   this.make = make;
   this.model = model;
   this.year = year;
-  let move = 0;
-  moveCar = function() {
-    return this.move += 10
+  this.move = 0;
+  this.moveCar = function() {
+    this.move += 10
+    return this.move
   }
 }
 //This is not passing all tests yet. Be sure to come back to it 
@@ -106,8 +107,23 @@ function User(name, age, email, savedPosts){
   this.savedPosts = savedPosts;
 }
 User.prototype.addSavedPost = function(id, title, rating){
-  return 
+  this.savedPosts.push({
+    id: id,
+    title: title,
+    rating: rating
+  })
 }
+User.prototype.removeSavedPost = function(num){
+  this.savedPosts.splice(num -1, 1)
+}
+User.prototype.changePostRating = function(number1, number2) {
+  for (let i = 0; i < this.savedPosts.length ; i++) {
+    if (this.savedPosts[i].id === number1) {
+      this.savedPosts[i].rating = number2
+    }
+  }
+}
+
 ////////// PROBLEM 6 //////////
 
 // You will be using the constructor function you just created in problem 5.
